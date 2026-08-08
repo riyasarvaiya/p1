@@ -1,0 +1,124 @@
+cl scr;
+SQL> select *from emp1;
+
+     EMPNO NAME           SALARY     DEPTNO DNAME                               
+---------- ---------- ---------- ---------- ----------                          
+         1 krishn           5000         10 sales                               
+         2 hari             6000         20 acc                                 
+         3 shyam            4000         10 sales                               
+         4 naman            5000         30 analyst                             
+         5 siya             7000         40 marketing                           
+         6 sweta            6000         30 analyst                             
+
+6 rows selected.
+
+SQL> select *from dept1;
+
+    DEPTNO DNAME      CITY                                                      
+---------- ---------- --------                                                  
+        10 sales      anand                                                     
+        20 acc        amreli                                                    
+        30 analyst    rajkot                                                    
+        40 marketing  amdavad                                                   
+
+SQL> select e.name,e.salary,s.grade from emp1 e join salgrade s on e.salary between s.losalaey and s.hisalary;
+select e.name,e.salary,s.grade from emp1 e join salgrade s on e.salary between s.losalaey and s.hisalary
+                                                                                              *
+ERROR at line 1:
+ORA-00904: "S"."HISALARY": invalid identifier 
+
+
+SQL> select e.name,e.salary from emp1 e join on e.salary between 1000 and 5000;
+select e.name,e.salary from emp1 e join on e.salary between 1000 and 5000
+                                        *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> select e.name,e.salary from emp1 e join dept1 d on e.deptno=d.deptno and e.salary between 1000 and 5000;
+
+NAME           SALARY                                                           
+---------- ----------                                                           
+krishn           5000                                                           
+shyam            4000                                                           
+naman            5000                                                           
+
+SQL> select e.name,e.salary,e.dname from emp1 e join dept1 d on e.deptno=d.deptno and e.salary between 1000 and 5000;
+
+NAME           SALARY DNAME                                                     
+---------- ---------- ----------                                                
+krishn           5000 sales                                                     
+shyam            4000 sales                                                     
+naman            5000 analyst                                                   
+
+SQL> select e.empno,e.name,d.deptno,d.dname from emp1 e inner join dept1 d on e.deptno=d.deptno;
+
+     EMPNO NAME           DEPTNO DNAME                                          
+---------- ---------- ---------- ----------                                     
+         1 krishn             10 sales                                          
+         3 shyam              10 sales                                          
+         2 hari               20 acc                                            
+         6 sweta              30 analyst                                        
+         4 naman              30 analyst                                        
+         5 siya               40 marketing                                      
+
+6 rows selected.
+
+SQL> select e.ename,d.deptno,d.dname from emp1 e left outer join dept1 on e.deptno=d.deptno;
+select e.ename,d.deptno,d.dname from emp1 e left outer join dept1 on e.deptno=d.deptno
+                                                                              *
+ERROR at line 1:
+ORA-00904: "D"."DEPTNO": invalid identifier 
+
+
+SQL> select e.ename,d.deptno,d.dname from emp1 e left outer join dept1 d on e.deptno=d.deptno;
+select e.ename,d.deptno,d.dname from emp1 e left outer join dept1 d on e.deptno=d.deptno
+       *
+ERROR at line 1:
+ORA-00904: "E"."ENAME": invalid identifier 
+
+
+SQL> select e.name,d.deptno,d.dname from emp1 e left outer join dept1 d on e.deptno=d.deptno;
+
+NAME           DEPTNO DNAME                                                     
+---------- ---------- ----------                                                
+shyam              10 sales                                                     
+krishn             10 sales                                                     
+hari               20 acc                                                       
+sweta              30 analyst                                                   
+naman              30 analyst                                                   
+siya               40 marketing                                                 
+
+6 rows selected.
+
+SQL> select e.name,d.deptno,d.dname from emp1 e right outer join dept1 d on e.deptno=d.deptno;
+
+NAME           DEPTNO DNAME                                                     
+---------- ---------- ----------                                                
+krishn             10 sales                                                     
+shyam              10 sales                                                     
+hari               20 acc                                                       
+sweta              30 analyst                                                   
+naman              30 analyst                                                   
+siya               40 marketing                                                 
+
+6 rows selected.
+
+SQL>  select e.name,d.deptno,d.dname from emp1 e full outer join dept1 d on e.deptno=d.deptno;
+
+NAME           DEPTNO DNAME                                                     
+---------- ---------- ----------                                                
+shyam              10 sales                                                     
+krishn             10 sales                                                     
+hari               20 acc                                                       
+sweta              30 analyst                                                   
+naman              30 analyst                                                   
+siya               40 marketing                                                 
+
+6 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 

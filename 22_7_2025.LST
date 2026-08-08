@@ -1,0 +1,65 @@
+insert into stud values(3,'jay','amreli',10,16);
+insert into stud values(3,'jay','amreli',10,16)
+*
+ERROR at line 1:
+ORA-02290: check constraint (SCOTT.CHK_AGE) violated 
+
+
+SQL> insert into stud values (3,'jay','gandhingr',10,20);
+
+1 row created.
+
+SQL> select *from stud;
+
+    STUDNO NAME     CITY              SNO        AGE                            
+---------- -------- ---------- ---------- ----------                            
+         3 jay      gandhingr          10         20                            
+         1 SREYA    RAJKOT             10         19                            
+         2 dhara    jamngr             20         20                            
+
+SQL> desc stud;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDNO                                    NOT NULL NUMBER(2)
+ NAME                                               VARCHAR2(8)
+ CITY                                               VARCHAR2(10)
+ SNO                                                NUMBER(2)
+ AGE                                                NUMBER(2)
+
+SQL> alter table stud modify city varchar (12) default 'rajkot';
+
+Table altered.
+
+SQL> select *from stud;
+
+    STUDNO NAME     CITY                SNO        AGE                          
+---------- -------- ------------ ---------- ----------                          
+         3 jay      gandhingr            10         20                          
+         1 SREYA    RAJKOT               10         19                          
+         2 dhara    jamngr               20         20                          
+
+SQL> insert into stud values(4,'prinsh',,20,19);
+insert into stud values(4,'prinsh',,20,19)
+                                   *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> insert into stud values(4,'prins',default,20,19);
+
+1 row created.
+
+SQL> select *from stud;
+
+    STUDNO NAME     CITY                SNO        AGE                          
+---------- -------- ------------ ---------- ----------                          
+         3 jay      gandhingr            10         20                          
+         4 prins    rajkot               20         19                          
+         1 SREYA    RAJKOT               10         19                          
+         2 dhara    jamngr               20         20                          
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 

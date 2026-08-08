@@ -1,0 +1,100 @@
+cl scr;
+SQL> select *from employee1 where post='salesman';
+
+no rows selected
+
+SQL> SELECT *fROM EMPLOYEE1 WHERE POST = 'SALESMAN';
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     13254 RADHA      SALESMAN        12345 25-NOV-90      12000       4000     
+        20                                                                      
+                                                                                
+     13457 SURAJ      SALESMAN        12345 12-AUG-92      14650       1700     
+        30                                                                      
+                                                                                
+     12435 KEVAL      SALESMAN        12345 20-OCT-90      18000       6500     
+        20                                                                      
+                                                                                
+
+SQL> SET PAGESIZE 100;
+SQL> SET LINESIZE 200;
+SQL> SELECT *FROM EMPLOYEE1 WHERE POST = 'SALESMAN';
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     DEPTID                                                                                                                  
+---------- ---------- ---------- ---------- --------- ---------- ---------- ----------                                                                                                                  
+     13254 RADHA      SALESMAN        12345 25-NOV-90      12000       4000         20                                                                                                                  
+     13457 SURAJ      SALESMAN        12345 12-AUG-92      14650       1700         30                                                                                                                  
+     12435 KEVAL      SALESMAN        12345 20-OCT-90      18000       6500         20                                                                                                                  
+
+SQL> SELECT *fROM EMPLOYEE1 WHERE POST='CLERK';
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     DEPTID                                                                                                                  
+---------- ---------- ---------- ---------- --------- ---------- ---------- ----------                                                                                                                  
+     12345 BANSI      CLERK                 18-NOV-90      15000                    10                                                                                                                  
+     14562 KALPANA    CLERK                 17-SEP-90       1700                    40                                                                                                                  
+
+SQL>  SELECT *fROM EMPLOYEE1 WHERE SALARY BETWEEN 20000 AND 90000;
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     DEPTID                                                                                                                  
+---------- ---------- ---------- ---------- --------- ---------- ---------- ----------                                                                                                                  
+     13654 PART       ANALYST         12675 27-DEC-95      90000                    10                                                                                                                  
+     18654 RAMESH     ANALYST         12675 15-MAY-93      85000                    10                                                                                                                  
+     14567 SEEMA      PROGRAMMER      13654 17-JUL-94      35000                    10                                                                                                                  
+     16754 KRUPA      PROGRAMMER      13654 13-AUG-92      30000                    10                                                                                                                  
+
+SQL> SELECT ENAME,POST,SALARY,DEPTID FROM EMPLOYEE1 WHERE SALARY BETWEEN 20000 AND 90000;
+
+ENAME      POST           SALARY     DEPTID                                                                                                                                                             
+---------- ---------- ---------- ----------                                                                                                                                                             
+PART       ANALYST         90000         10                                                                                                                                                             
+RAMESH     ANALYST         85000         10                                                                                                                                                             
+SEEMA      PROGRAMMER      35000         10                                                                                                                                                             
+KRUPA      PROGRAMMER      30000         10                                                                                                                                                             
+
+SQL> SELECT *FROM EMPLOYEE1 WHERE DEPTID=10;
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     DEPTID                                                                                                                  
+---------- ---------- ---------- ---------- --------- ---------- ---------- ----------                                                                                                                  
+     13654 PART       ANALYST         12675 27-DEC-95      90000                    10                                                                                                                  
+     18654 RAMESH     ANALYST         12675 15-MAY-93      85000                    10                                                                                                                  
+     12345 BANSI      CLERK                 18-NOV-90      15000                    10                                                                                                                  
+     12675 TANMAY     PRESIDENT             05-JUL-85      12400                    10                                                                                                                  
+     14567 SEEMA      PROGRAMMER      13654 17-JUL-94      35000                    10                                                                                                                  
+     16754 KRUPA      PROGRAMMER      13654 13-AUG-92      30000                    10                                                                                                                  
+
+6 rows selected.
+
+SQL> SELECT ENAME,SALARY,DEPTID FROM EMPLOYEE1 E JOIN DEPARTMENT1 D ON E.DEPTID=D.DEPTNO WHERE E.SALARY>25000 AND D.DEPTNO=10;
+
+ENAME          SALARY     DEPTID                                                                                                                                                                        
+---------- ---------- ----------                                                                                                                                                                        
+PART            90000         10                                                                                                                                                                        
+RAMESH          85000         10                                                                                                                                                                        
+SEEMA           35000         10                                                                                                                                                                        
+KRUPA           30000         10                                                                                                                                                                        
+
+SQL> SELECT ENAME,POST,SALARY FROM EMPLOYEE1;
+
+ENAME      POST           SALARY                                                                                                                                                                        
+---------- ---------- ----------                                                                                                                                                                        
+PART       ANALYST         90000                                                                                                                                                                        
+RAMESH     ANALYST         85000                                                                                                                                                                        
+BANSI      CLERK           15000                                                                                                                                                                        
+RADHA      SALESMAN        12000                                                                                                                                                                        
+TANMAY     PRESIDENT       12400                                                                                                                                                                        
+SURAJ      SALESMAN        14650                                                                                                                                                                        
+SEEMA      PROGRAMMER      35000                                                                                                                                                                        
+KRUPA      PROGRAMMER      30000                                                                                                                                                                        
+KALPANA    CLERK            1700                                                                                                                                                                        
+KEVAL      SALESMAN        18000                                                                                                                                                                        
+
+10 rows selected.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 

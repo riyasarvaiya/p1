@@ -1,0 +1,21 @@
+cl scr;
+SQL> desc employee1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                     NOT NULL NUMBER(5)
+ ENAME                                              VARCHAR2(10)
+ POST                                               VARCHAR2(10)
+ MGRID                                              NUMBER(5)
+ HIREDATE                                           DATE
+ SALARY                                             NUMBER(5)
+ COMMISSION                                         NUMBER(4)
+ DEPTID                                             NUMBER(2)
+
+SQL> desc department1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPTNO                                    NOT NULL NUMBER(2)
+ DNAME                                              VARCHAR2(10)
+ LOCATION                                           VARCHAR2(8)
+
+SQL> 

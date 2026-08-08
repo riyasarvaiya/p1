@@ -1,0 +1,56 @@
+cl scr;
+SQL> select *from employee1;
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     13654 PART       ANALYST         12675 27-DEC-95      90000                
+        10                                                                      
+                                                                                
+     18654 RAMESH     ANALYST         12675 15-MAY-93      85000                
+        10                                                                      
+                                                                                
+     12345 BANSI      CLERK                 18-NOV-90      15000                
+        10                                                                      
+                                                                                
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     13254 RADHA      SALESMAN        12345 25-NOV-90      12000       4000     
+        20                                                                      
+                                                                                
+     12675 TANMAY     PRESIDENT             05-JUL-85      12400                
+        10                                                                      
+                                                                                
+     13457 SURAJ      SALESMAN        12345 12-AUG-92      14650       1700     
+        30                                                                      
+                                                                                
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     14567 SEEMA      PROGRAMMER      13654 17-JUL-94      35000                
+        10                                                                      
+                                                                                
+     16754 KRUPA      PROGRAMMER      13654 13-AUG-92      30000                
+        10                                                                      
+                                                                                
+     14562 KALPANA    CLERK                 17-SEP-90       1700                
+        40                                                                      
+                                                                                
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     12435 KEVAL      SALESMAN        12345 20-OCT-90      18000       6500     
+        20                                                                      
+                                                                                
+
+10 rows selected.
+
+SQL> 

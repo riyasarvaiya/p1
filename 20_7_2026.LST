@@ -1,0 +1,302 @@
+INSERT INTO EMPLOYEE1 VALUES(18654,'RAMESH','ANALYST',12675,DATE '1993-05-15',8500,NULL,10);
+
+1 row created.
+
+SQL> SELECT *fROM EMPLOYEE1;
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                       
+----------                                                                      
+     13654 PART       ANALYST         12675 27-DEC-95      90000                
+        10                                                                      
+                                                                                
+     18654 RAMESH     ANALYST         12675 15-MAY-93       8500                
+        10                                                                      
+                                                                                
+     12345 BANSI      CLERK                 18-NOV-90      15000                
+        10                                                                      
+                                                                                
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     13254 RADHA      SALESMAN        12345 25-NOV-90      12000       4000     
+        20                                                                      
+                                                                                
+     12675 TANMAY     PRESIDENT             05-JUL-85      12400                
+        10                                                                      
+                                                                                
+     13457 SURAJ      SALESMAN        12345 12-AUG-92      14650       1700     
+        30                                                                      
+                                                                                
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     14567 SEEMA      PROGRAMMER      13654 17-JUL-94      35000                
+        10                                                                      
+                                                                                
+     16754 KRUPA      PROGRAMMER      13654 13-AUG-92      30000                
+        10                                                                      
+                                                                                
+     14562 KALPANA    CLERK                 17-SEP-90       1700                
+        40                                                                      
+                                                                                
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     12435 KEVAL      SALESMAN        12345 20-OCT-90      18000       6500     
+        20                                                                      
+                                                                                
+
+10 rows selected.
+
+SQL> SELECT *FROM EMPLOYEE1 WHERE POST=SALESMAN;
+SELECT *FROM EMPLOYEE1 WHERE POST=SALESMAN
+                                  *
+ERROR at line 1:
+ORA-00904: "SALESMAN": invalid identifier 
+
+
+SQL> SELECT *fROM EMPLOYEE1 WHERE POST='SALESMAN';
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     13254 RADHA      SALESMAN        12345 25-NOV-90      12000       4000     
+        20                                                                      
+                                                                                
+     13457 SURAJ      SALESMAN        12345 12-AUG-92      14650       1700     
+        30                                                                      
+                                                                                
+     12435 KEVAL      SALESMAN        12345 20-OCT-90      18000       6500     
+        20                                                                      
+                                                                                
+
+SQL> SELECT *fROM EMPLOYEE1 WHERE POST='CLERK';
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     12345 BANSI      CLERK                 18-NOV-90      15000                
+        10                                                                      
+                                                                                
+     14562 KALPANA    CLERK                 17-SEP-90       1700                
+        40                                                                      
+                                                                                
+
+SQL> SELECT *FROM EMPLOYEE1 WHERE SALARY=2000-9000;
+
+no rows selected
+
+SQL> SELECT *FROM EMPLOYEE1 WHERE SALARY BETWEEN 2000 TO 9000;
+SELECT *FROM EMPLOYEE1 WHERE SALARY BETWEEN 2000 TO 9000
+                                                 *
+ERROR at line 1:
+ORA-00905: missing keyword 
+
+
+SQL> SELECT *FROM EMPLOYEE1 WHERE SALARY BETWEEN 2000 AND 9000;
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     18654 RAMESH     ANALYST         12675 15-MAY-93       8500                
+        10                                                                      
+                                                                                
+
+SQL> SELECT *fROM EMPLOYEE1 WHERE SALARY BETWEEN 20000 AND 90000;
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     13654 PART       ANALYST         12675 27-DEC-95      90000                
+        10                                                                      
+                                                                                
+     14567 SEEMA      PROGRAMMER      13654 17-JUL-94      35000                
+        10                                                                      
+                                                                                
+     16754 KRUPA      PROGRAMMER      13654 13-AUG-92      30000                
+        10                                                                      
+                                                                                
+
+SQL> UPDATE EMPLOYEE1 SET SALARY=85000 WHERE EMPID=18654;
+
+1 row updated.
+
+SQL> SELECT *FROM EMPLOYEE1 WHERE SALARY BETWEEN 20000 AND 90000;
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     13654 PART       ANALYST         12675 27-DEC-95      90000                
+        10                                                                      
+                                                                                
+     18654 RAMESH     ANALYST         12675 15-MAY-93      85000                
+        10                                                                      
+                                                                                
+     14567 SEEMA      PROGRAMMER      13654 17-JUL-94      35000                
+        10                                                                      
+                                                                                
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     16754 KRUPA      PROGRAMMER      13654 13-AUG-92      30000                
+        10                                                                      
+                                                                                
+
+SQL> SELECT *FROM EMPLOYEE1 WHERE DEPTID=10;
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     13654 PART       ANALYST         12675 27-DEC-95      90000                
+        10                                                                      
+                                                                                
+     18654 RAMESH     ANALYST         12675 15-MAY-93      85000                
+        10                                                                      
+                                                                                
+     12345 BANSI      CLERK                 18-NOV-90      15000                
+        10                                                                      
+                                                                                
+
+     EMPID ENAME      POST            MGRID HIREDATE      SALARY COMMISSION     
+---------- ---------- ---------- ---------- --------- ---------- ----------     
+    DEPTID                                                                      
+----------                                                                      
+     12675 TANMAY     PRESIDENT             05-JUL-85      12400                
+        10                                                                      
+                                                                                
+     14567 SEEMA      PROGRAMMER      13654 17-JUL-94      35000                
+        10                                                                      
+                                                                                
+     16754 KRUPA      PROGRAMMER      13654 13-AUG-92      30000                
+        10                                                                      
+                                                                                
+
+6 rows selected.
+
+SQL> SELECT NAME,POST,SALARY FROM EMPLOYEE1 ;
+SELECT NAME,POST,SALARY FROM EMPLOYEE1 
+       *
+ERROR at line 1:
+ORA-00904: "NAME": invalid identifier 
+
+
+SQL> SELECT ENAME,POST,SALARY FROM EMPLOYEE1;
+
+ENAME      POST           SALARY                                                
+---------- ---------- ----------                                                
+PART       ANALYST         90000                                                
+RAMESH     ANALYST         85000                                                
+BANSI      CLERK           15000                                                
+RADHA      SALESMAN        12000                                                
+TANMAY     PRESIDENT       12400                                                
+SURAJ      SALESMAN        14650                                                
+SEEMA      PROGRAMMER      35000                                                
+KRUPA      PROGRAMMER      30000                                                
+KALPANA    CLERK            1700                                                
+KEVAL      SALESMAN        18000                                                
+
+10 rows selected.
+
+SQL> SELECT *FROM DEPARTMENT1 WHERE LOCATION='ANAND';
+
+    DEPTNO DNAME      LOCATION                                                  
+---------- ---------- --------                                                  
+        10 IT         ANAND                                                     
+        40 FINANCE    ANAND                                                     
+
+SQL> SELECT *FROM DEPARTMENT1 WHERE DEPTNO=50;
+
+    DEPTNO DNAME      LOCATION                                                  
+---------- ---------- --------                                                  
+        50 MARKETING  SURAT                                                     
+
+SQL> SELECT DNAME,LOCATION FROM DEPARTMENT1;
+
+DNAME      LOCATION                                                             
+---------- --------                                                             
+IT         ANAND                                                                
+SALES      BOMBAY                                                               
+PURCHASE   SURAT                                                                
+FINANCE    ANAND                                                                
+MARKETING  SURAT                                                                
+
+SQL> SELECT *fROM EMPLOYEE1 WHERE HIREDATE=1990;
+SELECT *fROM EMPLOYEE1 WHERE HIREDATE=1990
+                                     *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected DATE got NUMBER 
+
+
+SQL> SELECT *FROM EMPLOYEE1 WHERE HIREDATE=DATE '1990';
+SELECT *FROM EMPLOYEE1 WHERE HIREDATE=DATE '1990'
+                                           *
+ERROR at line 1:
+ORA-01861: literal does not match format string 
+
+
+SQL> select *From tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+EMPLOYEE1                      TABLE                                            
+DEPARTMENT1                    TABLE                                            
+BIN$5YlUIo89Q4mq829w6/XD/w==$0 TABLE                                            
+BIN$iX/VgIQ9Q8+F1N95A8XJog==$0 TABLE                                            
+BIN$U6V0iVS5RKKqiUKedCHfaw==$0 TABLE                                            
+BIN$kiI7gJ8eTDaP2wi3ZzoF4A==$0 TABLE                                            
+BIN$qoXSs79CSoyRsUoDQs9ACA==$0 TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+BIN$yEM/tzkfT8S5WU8CaB6s3Q==$0 TABLE                                            
+BIN$j6hp8q5MSzqNDogd/dMGBw==$0 TABLE                                            
+
+13 rows selected.
+
+SQL> ALTER TABLE EMPLOYEE1 ADD CONSTRAINT PK_EMPLOYEE1 PRIMARY KEY (EMPID);
+
+Table altered.
+
+SQL> INSERT INTO EMPLOYEE1 (EMPID,ENAME) VALUES (NULL,HARI);
+INSERT INTO EMPLOYEE1 (EMPID,ENAME) VALUES (NULL,HARI)
+                                                 *
+ERROR at line 1:
+ORA-00984: column not allowed here 
+
+
+SQL> INSERT INTO EMPLOYEE1 (EMPID,ENAME) VALUES (NULL,'HARI');
+INSERT INTO EMPLOYEE1 (EMPID,ENAME) VALUES (NULL,'HARI')
+                                            *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SCOTT"."EMPLOYEE1"."EMPID") 
+
+
+SQL> CREATE TABLE STUD (STUDNO NUMBER(2) PRIMARY KEY,NAME VARCHAR(8),CITY VARCHAR(10));
+
+Table created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 

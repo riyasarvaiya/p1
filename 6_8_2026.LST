@@ -1,0 +1,95 @@
+cl scr;
+SQL> select *from order_detail;
+select *from order_detail
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select *from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ORDER_DETAILS                  TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+SHYAM3320                      TABLE                                            
+STUDENT                        TABLE                                            
+CUST_MASTER1                   TABLE                                            
+EMPLOYEE1                      TABLE                                            
+STUD                           TABLE                                            
+DEPARTMENT1                    TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+SUB                            TABLE                                            
+EMP1                           TABLE                                            
+DEPT1                          TABLE                                            
+BIN$pUBCJr7ZTkm2o+MTQXX4nQ==$0 TABLE                                            
+BIN$5YlUIo89Q4mq829w6/XD/w==$0 TABLE                                            
+BIN$iX/VgIQ9Q8+F1N95A8XJog==$0 TABLE                                            
+BIN$U6V0iVS5RKKqiUKedCHfaw==$0 TABLE                                            
+BIN$kiI7gJ8eTDaP2wi3ZzoF4A==$0 TABLE                                            
+BIN$qoXSs79CSoyRsUoDQs9ACA==$0 TABLE                                            
+BIN$yEM/tzkfT8S5WU8CaB6s3Q==$0 TABLE                                            
+BIN$j6hp8q5MSzqNDogd/dMGBw==$0 TABLE                                            
+
+22 rows selected.
+
+SQL> set pagesize 100;
+SQL> set linesize 200;
+SQL> select *from order_details;
+
+  ORDER_NO ORDER_DAT ITEM       ITEM_PRICE   DISCOUNT                                                                                                                                                   
+---------- --------- ---------- ---------- ----------                                                                                                                                                   
+         1 01-MAY-25 PEN                15                                                                                                                                                              
+         2 02-MAY-25 PENCIL             10                                                                                                                                                              
+         3 03-MAY-25 ERASER              5          2                                                                                                                                                   
+         4 04-MAY-25 COLORS             35          5                                                                                                                                                   
+         5 05-MAY-25 SHARPNER           10                                                                                                                                                              
+
+SQL> select sum(item_price) as total price from item_Details;
+select sum(item_price) as total price from item_Details
+                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select sum(item_price) as total_price from item_Details;
+select sum(item_price) as total_price from item_Details
+                                           *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select sum(item_price) as total_price from order_details;
+
+TOTAL_PRICE                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+         75                                                                                                                                                                                             
+
+SQL> create table empp(e_no number(2),e_name number(8),company varchar(8),salary number(3),city varchar(5));
+
+Table created.
+
+SQL> insert into empp(01,'jack','infosystem_ltd',9000,'mumbai');
+insert into empp(01,'jack','infosystem_ltd',9000,'mumbai')
+                 *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> insert into empp values(01,'jack','infosystem_ltd',9000,'mumbai');
+insert into empp values(01,'jack','infosystem_ltd',9000,'mumbai')
+                           *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 

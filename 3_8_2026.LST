@@ -1,0 +1,151 @@
+cl scr;
+SQL> select distinct e.deptno as department_no,e.ename as employee,m.ename as manager from emp e left join emp m on e.mgm.empno order by e.deptno;
+select distinct e.deptno as department_no,e.ename as employee,m.ename as manager from emp e left join emp m on e.mgm.empno order by e.deptno
+                                                                                                                           *
+ERROR at line 1:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT DISTINCT E.DEPTNO AS DEPARTMENT_NO,E.ENAME AS EMPLOYEE,M.ENAME AS MANAGER FROM EMP E LEFT JOIN EMP M ON E.MGR=M.EMPNO ORDER BY E.DEPTNO;
+
+DEPARTMENT_NO EMPLOYEE   MANAGER                                                
+------------- ---------- ----------                                             
+           10 CLARK      KING                                                   
+           10 KING                                                              
+           10 MILLER     CLARK                                                  
+           20 ADAMS      SCOTT                                                  
+           20 FORD       JONES                                                  
+           20 JONES      KING                                                   
+           20 SCOTT      JONES                                                  
+           20 SMITH      FORD                                                   
+           30 ALLEN      BLAKE                                                  
+           30 BLAKE      KING                                                   
+           30 JAMES      BLAKE                                                  
+
+DEPARTMENT_NO EMPLOYEE   MANAGER                                                
+------------- ---------- ----------                                             
+           30 MARTIN     BLAKE                                                  
+           30 TURNER     BLAKE                                                  
+           30 WARD       BLAKE                                                  
+
+14 rows selected.
+
+SQL> SELECT DISTINCT E.DEPTNO AS DEPT_NO,E.NAME AS EMPLOYEE, M.NAME AS MANAGER FROM EMP1 LEFT JOIN EMP1 M ON E.MGR=M.EMPNO ORDER BY E.DEPTNO;
+SELECT DISTINCT E.DEPTNO AS DEPT_NO,E.NAME AS EMPLOYEE, M.NAME AS MANAGER FROM EMP1 LEFT JOIN EMP1 M ON E.MGR=M.EMPNO ORDER BY E.DEPTNO
+                                                                                                        *
+ERROR at line 1:
+ORA-00904: "E"."MGR": invalid identifier 
+
+
+SQL> DESC EMP;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGR                                                NUMBER(4)
+ HIREDATE                                           DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             NUMBER(2)
+
+SQL> SELECT E.NAME,D.DNAME FROM EMP1 E CROSS JOIN DEPT1 D;
+
+NAME       DNAME                                                                
+---------- ----------                                                           
+krishn     sales                                                                
+hari       sales                                                                
+shyam      sales                                                                
+naman      sales                                                                
+siya       sales                                                                
+sweta      sales                                                                
+krishn     acc                                                                  
+hari       acc                                                                  
+shyam      acc                                                                  
+naman      acc                                                                  
+siya       acc                                                                  
+
+NAME       DNAME                                                                
+---------- ----------                                                           
+sweta      acc                                                                  
+krishn     analyst                                                              
+hari       analyst                                                              
+shyam      analyst                                                              
+naman      analyst                                                              
+siya       analyst                                                              
+sweta      analyst                                                              
+krishn     marketing                                                            
+hari       marketing                                                            
+shyam      marketing                                                            
+naman      marketing                                                            
+
+NAME       DNAME                                                                
+---------- ----------                                                           
+siya       marketing                                                            
+sweta      marketing                                                            
+
+24 rows selected.
+
+SQL> SELECT *fROM EMP1 NATURAL JOIN DEPT1;
+
+    DEPTNO DNAME           EMPNO NAME           SALARY CITY                     
+---------- ---------- ---------- ---------- ---------- --------                 
+        10 sales               1 krishn           5000 anand                    
+        20 acc                 2 hari             6000 amreli                   
+        10 sales               3 shyam            4000 anand                    
+        30 analyst             4 naman            5000 rajkot                   
+        40 marketing           5 siya             7000 amdavad                  
+        30 analyst             6 sweta            6000 rajkot                   
+
+6 rows selected.
+
+SQL> SELECT ENAME,SAL FROM EMP WHERE SAL=(SELECT MAX(SAL) FORM EMP );
+SELECT ENAME,SAL FROM EMP WHERE SAL=(SELECT MAX(SAL) FORM EMP )
+                                                          *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SQL> select distinct e.deptno as department_no,e.ename as employee,m.ename as manager from emp e lef
+SP2-0734: unknown command beginning "SQL> selec..." - rest of line ignored.
+SQL> t join emp m on e.mgm.empno order by e.deptno;
+SP2-0734: unknown command beginning "t join emp..." - rest of line ignored.
+SQL> select distinct e.deptno as department_no,e.ename as employee,m.ename as manager from emp e left joi
+  2  
+SQL> ERROR at line 1:
+SP2-0734: unknown command beginning "ERROR at l..." - rest of line ignored.
+SQL> ORA-00920: invalid relational operator
+SP2-0734: unknown command beginning "ORA-00920:..." - rest of line ignored.
+SQL> SQL> select distinct e.deptno as department_no,e.ename as employee,m.ename as manager from emp e lef
+SP2-0734: unknown command beginning "SQL> selec..." - rest of line ignored.
+SQL> t join emp m on e.mgm.empno order by e.deptno;
+SP2-0734: unknown command beginning "t join emp..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> select distinct e.deptno as department_no,e.ename as employee,m.ename as manager from emp e left joi
+  2  
+SQL> ERROR at line 1:
+SP2-0734: unknown command beginning "ERROR at l..." - rest of line ignored.
+SQL> ORA-00920: invalid relational operator
+SP2-0734: unknown command beginning "ORA-00920:..." - rest of line ignored.
+SQL> 
+SQL> 
+SQL> 
+SQL> CL SCR;
+SQL> SELECT ENAME,SAL FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP);
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+KING             5000                                                           
+
+SQL> SELECT NAME,SALARY FROM EMP1 WHERE SALARY=(SELECT MAX(SALARY) FROM EMP1);
+
+NAME           SALARY                                                           
+---------- ----------                                                           
+siya             7000                                                           
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 

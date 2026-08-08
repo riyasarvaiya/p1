@@ -1,0 +1,86 @@
+cl scr;
+SQL> select *from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+SHYAM3320                      TABLE                                            
+STUDENT                        TABLE                                            
+CUST_MASTER1                   TABLE                                            
+EMPLOYEE1                      TABLE                                            
+STUD                           TABLE                                            
+DEPARTMENT1                    TABLE                                            
+SUB                            TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+EMP1                           TABLE                                            
+DEPT1                          TABLE                                            
+BIN$pUBCJr7ZTkm2o+MTQXX4nQ==$0 TABLE                                            
+BIN$5YlUIo89Q4mq829w6/XD/w==$0 TABLE                                            
+BIN$iX/VgIQ9Q8+F1N95A8XJog==$0 TABLE                                            
+BIN$U6V0iVS5RKKqiUKedCHfaw==$0 TABLE                                            
+BIN$kiI7gJ8eTDaP2wi3ZzoF4A==$0 TABLE                                            
+BIN$qoXSs79CSoyRsUoDQs9ACA==$0 TABLE                                            
+BIN$yEM/tzkfT8S5WU8CaB6s3Q==$0 TABLE                                            
+BIN$j6hp8q5MSzqNDogd/dMGBw==$0 TABLE                                            
+
+21 rows selected.
+
+SQL> select *from emp1;
+
+     EMPNO NAME           SALARY     DEPTNO DNAME                               
+---------- ---------- ---------- ---------- ----------                          
+         1 krishn           5000         10 sales                               
+         2 hari             6000         20 acc                                 
+         3 shyam            4000         10 sales                               
+         4 naman            5000         30 analyst                             
+         5 siya             7000         40 marketing                           
+         6 sweta            6000         30 analyst                             
+
+6 rows selected.
+
+SQL> select *from dept1;
+
+    DEPTNO DNAME      CITY                                                      
+---------- ---------- --------                                                  
+        10 sales      anand                                                     
+        20 acc        amreli                                                    
+        30 analyst    rajkot                                                    
+        40 marketing  amdavad                                                   
+
+SQL> select count(dname) as total_post,avg(salary) from emp1 group by dname;
+
+TOTAL_POST AVG(SALARY)                                                          
+---------- -----------                                                          
+         1        6000                                                          
+         2        4500                                                          
+         1        7000                                                          
+         2        5500                                                          
+
+SQL> select deptno as total_dept,count as total_emp(*from emp1) group by deptno;
+select deptno as total_dept,count as total_emp(*from emp1) group by deptno
+                                              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select deptno as total_dept,count *from emp1 as total_emp group by deptno;
+select deptno as total_dept,count *from emp1 as total_emp group by deptno
+                                   *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> select deptno as total_dept,count(*from emp1) as total_emp group by deptno
+  2  ;
+select deptno as total_dept,count(*from emp1) as total_emp group by deptno
+                                   *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> 
