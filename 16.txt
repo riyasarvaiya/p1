@@ -1,0 +1,56 @@
+SQL> select *from salesman;
+
+       SID   NAME        CITY        COMMISSION
+----------  ----------    ----------        ----------
+         1   RAJ          BOMBAY             20
+         2   PREM       DELHI                 22
+         3   JAY          LONDON             30
+         4   HET         BOMBAY             28
+         5   AMAN         PUNE               20
+
+SQL> INSERT INTO CUSTOMER VALUES (11,'MEGHA','RAJKOT',03,1);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(21,'JAYESH','AHEMDABAD',01,2);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(31,'KARAN','LONDON',02,3);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(41,'KRISH','BOMBAY',04,4);
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES(51,'RADHA','PUNE',05,5);
+
+1 row created.
+
+==>>  SQL> SELECT C.CNAME AS CUS_NAME,S.NAME AS SAL_NAME FROM CUSTOMER C JOIN SALESMAN S ON C.S_ID=S.SID;
+
+CUS_NAME      	 SAL_NAME
+----------           	 ----------
+MEGHA         	 RAJ
+JAYESH    		 PREM
+KARAN      	JAY
+KRISH     		 HET
+RADHA     	 AMAN
+
+SQL> SELECT NAME,'SALESMAN' AS TYPE FROM SALESMAN WHERE CITY='LONDON' UNION SELECT CNAME,'CUTOMER' AS TYPE FROM CUSTOMER WHERE CITY='LONDON';
+
+NAME     	  TYPE
+---------- 	 --------
+JAY       	 SALESMAN
+KARAN      CUTOMER
+
+SQL> SELECT NAME, CITY FROM SALESMAN;
+
+NAME       CITY
+---------- ----------
+RAJ        BOMBAY
+PREM       DELHI
+JAY        LONDON
+HET        BOMBAY
+AMAN       PUNE
