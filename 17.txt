@@ -1,0 +1,47 @@
+SQL> CREATE TABLE EMP_DETAILS(EMP_NO NUMBER(3),FNAME VARCHAR(10),LNAME VARCHAR(10),EMP_DEPT VARCHAR(10));
+
+Table created.
+
+SQL> INSERT INTO EMP_DETAILS VALUES(011,'JENISHA','JOSHI','SALES');
+
+1 row created.
+
+SQL> INSERT INTO EMP_DETAILS VALUES(031,'JANAK','DOSHI','COM');
+
+1 row created.
+
+SQL> INSERT INTO EMP_DETAILS VALUES(042,'AMISHA','KOTHARI','ACC');
+
+1 row created.
+
+SQL> INSERT INTO EMP_DETAILS VALUES(021,'KAVYA','JANI','COM');
+
+1 row created.
+
+SQL> INSERT INTO EMP_DETAILS VALUES(056,'PREM','GOHIL','ACC');
+
+1 row created.
+
+SQL> SELECT DISTINCT LNAME FROM EMP_DETAILS;
+
+LNAME
+----------
+JOSHI
+JANI
+DOSHI
+KOTHARI
+GOHIL
+
+SQL> SELECT *FROM EMP_DETAILS WHERE EMP_DEPT='ACC';
+
+ EMP_NO  FNAME      LNAME      EMP_DEPT
+---------- 	 ----------     ----------      ----------
+        42 	 AMISHA    KOTHARI     ACC
+        56 	 PREM       GOHIL         ACC
+
+SQL> SELECT *FROM EMP_DETAILS WHERE LNAME IN('JOSHI','DOSHI');
+
+    EMP_NO     FNAME      LNAME      EMP_DEPT
+----------	        ----------     ----------     ----------
+        11 	        JENISHA    JOSHI         SALES
+        31            JANAK       DOSHI        COM
