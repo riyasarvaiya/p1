@@ -1,0 +1,60 @@
+SQL> CREATE TABLE ORDERS(ORD_NO NUMBER(3),PUR_AMT NUMBER(3),ORD_DATE DATE,CUS_ID NUMBER(5),SAL_ID NU
+MBER(5));
+
+Table created.
+
+SQL> INSERT INTO ORDERS VALUES(221,200,DATE '2025-01-27',11023,71);
+
+1 row created.
+
+SQL> INSERT INTO ORDERS VALUES(321,300,DATE '2025-02-19',23651,72);
+
+1 row created.
+SQL> INSERT INTO ORDERS VALUES(231,263,DATE '2025-03-09',56273,73);
+
+1 row created.
+
+SQL> INSERT INTO ORDERS VALUES(652,763,DATE '2025-03-27',78621,74);
+
+1 row created.
+
+SQL> INSERT INTO ORDERS VALUES(872,182,DATE '2025-07-24',99621,75);
+
+1 row created.
+
+
+SQL> SELECT ORD_DATE,SAL_ID,ORD_NO,PUR_AMT FROM ORDERS;
+
+ORD_DATE      SAL_ID     ORD_NO    PUR_AMT
+--------- ---------- ---------- ----------
+27-JAN-25         71        221        200
+19-FEB-25         72        321        300
+09-MAR-25         73        231        263
+27-MAR-25         74        652        763
+24-JUL-25         75        872        182
+
+SQL> select distinct sal_id from orders;
+
+    SAL_ID
+----------
+        72
+        74
+        75
+        71
+        73
+
+SQL> select ord_no,ord_date,pur_amt from orders where sal_id=73;
+
+    ORD_NO ORD_DATE     PUR_AMT
+---------- --------- ----------
+       231 09-MAR-25        263
+
+SQL> select *from orders order by ord_no asc;
+
+    ORD_NO    PUR_AMT ORD_DATE      CUS_ID     SAL_ID
+---------- ---------- --------- ---------- ----------
+       221        200 27-JAN-25      11023         71
+       231        263 09-MAR-25      56273         73
+       321        300 19-FEB-25      23651         72
+       652        763 27-MAR-25      78621         74
+       872        182 24-JUL-25      99621         75
