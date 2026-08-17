@@ -1,0 +1,93 @@
+SQL> create table company_master(com_id number(2) primary key,com_name varchar(10));
+
+Table created.
+
+SQL> create table item_master(item_id number(3) primary key,item_name varchar(10),price number(5),co
+m_code number(5));
+
+Table created.
+
+SQL> alter table item_master add constraint fk_com foreign key (com_code) references company_master(
+com_id);
+
+Table altered.
+
+SQL> insert into company_master values(11,'iit');
+
+1 row created.
+
+SQL>  insert into company_master values(12,'tcl');
+
+1 row created.
+
+SQL>  insert into company_master values(13,'infotech');
+
+1 row created.
+
+SQL>  insert into item_master values(101,'cpu',70000,11);
+
+1 row created.
+
+SQL> insert into item_master values(102,'keyboard',50000,12);
+
+1 row created.
+
+SQL> insert into item_master values(103,'ssd',30000,13);
+
+1 row created.
+
+SQL> insert into item_master values(104,'pendrive;,20000,11);
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> insert into item_master values(104,'pendrive',20000,11);
+
+1 row created.
+
+SQL> insert into item_master values(105,'mouse',10000,12);
+
+1 row created.
+
+SQL> commit;
+
+SQL> select i.*,c.com_name from item_master i join company_master c on i.COM_CODE=c.COM_ID;
+
+   ITEM_ID		 ITEM_NAME     	  PRICE  	COM_CODE       COM_NAME
+----------		 ---------- 		---------- 	---------- 	           ----------
+       101 		cpu            		70000     	   11		iit
+       102		keyboard      	 50000         12 		tcl
+       103 		ssd             		30000          13 		infotech
+       104		pendrive        	20000          11 		iit
+       105 		mouse           	10000          12 		tcl
+
+
+SQL> select i.item_name,i.price,c.com_name from item_master i join company_master c on i.com_code=c.
+com_id;
+
+ITEM_NAME    	   PRICE 	            COM_NAME
+---------- 		---------- 	            ----------
+cpu             	70000 		iit
+keyboard        	50000		tcl
+ssd            		 30000		infotech
+pendrive        	20000		iit
+mouse          	 10000		tcl
+
+
+SQL> select c.com_name,avg(i.price) from item_master i join company_master c on i.com_code=c.com_id 
+group by c.com_name;
+
+COM_NAME   	AVG(I.PRICE)
+---------- 		------------
+infotech          	30000
+iit              		45000
+tcl              		30000
+
+
+SQL> SELECT c.com_name  FROM item_master i JOIN company_master c ON i.com_code = c.com_id GROUP BY c.com_name  HAVING AVG(i.price) >= 20000;
+
+COM_NAME
+----------
+infotech
+iit
+tcl
