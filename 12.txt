@@ -1,0 +1,64 @@
+CREATE TABLE DEPT_MAS(DEPT_NO NUMBER(2) PRIMARY KEY,DEPT_NAME VARCHAR(10));
+
+CREATE TABLE EMP_MAS(EMP_NO NUMBER(3) PRIMARY KEY,EMP_NAME VARCHAR(10),DEPT_CODE NUMBER(5),DES VARCHAR(10),FOREIGN KEY (DEPT_CODE) REFERENCES DEPT_MAS(DEPT_NO));
+
+CREATE TABLE SALARY_MAST(EMP_NO NUMBER(3),SAL NUMBER(5),DEPT_CODE NUMBER(5),HRA NUMBER(5),MA NUMBER(5),PF NUMBER(5),FOREIGN KEY (EMP_NO) REFERENCES EMP_MAS(EMP_NO));
+
+
+INSERT INTO DEPT_MAS VALUES(31,'COMPUTER');
+INSERT INTO DEPT_MAS VALUES(22,'ACC');
+INSERT INTO DEPT_MAS VALUES(41,'SALES');
+
+
+INSERT INTO EMP_MAS VALUES(431,'KRISHN',31,'PROGRAMMER');
+INSERT INTO EMP_MAS VALUES(331,'JAY',22,'ACCOUNTANT');
+INSERT INTO EMP_MAS VALUES(652,'HARI',41,'SALESMAN');
+INSERT INTO EMP_MAS VALUES(261,'PREM',31,'PROGRAMMER');
+INSERT INTO EMP_MAS VALUES(981,'DEV',22,'ACCOUNTANT');
+
+
+INSERT INTO SALARY_MAST VALUES(431,3000,31,200,100,50);
+INSERT INTO SALARY_MAST VALUES(331,4000,22,220,110,70);
+ insert into salary_mast values(652,5000,41,210,200,100);
+insert into salary_mast values(261,2200,31,110,150,90);
+insert into salary_mast values(981,3500,22,200,100,50);
+
+	QUERY 1
+
+SQL> SELECT e.Emp_name, d.Dept_name, s.Sal + s.HRA + s.MA - s.PF AS Total_Salary
+  2  FROM Emp_mas e, Dept_mas d, Salary_mast s WHERE e.Dept_code = d.Dept_no
+  3  AND e.Emp_no = s.Emp_no
+  4  AND s.Sal > 2000
+  5  AND s.Sal < 5000;
+
+EMP_NAME 	  DEPT_NAME  	TOTAL_SALARY
+---------- 		  ---------- 		------------
+PREM       	  COMPUTER         	  2370
+DEV        		  ACC               	  3750
+KRISHN     	  COMPUTER             3250
+JAY        		  ACC                	  4260
+
+	QUERY 2
+
+SQL> UPDATE Salary_mast
+  2  SET HRA = CASE
+  3              WHEN Sal > 2000 THEN 100
+  4              ELSE 200
+  5            END;
+
+5 rows updated.
+
+	QUERY 3 
+
+SQL> DELETE FROM salary_masT WHERE emp_no IN (
+  2      SELECT emp_no
+  3      FROM emp_mas
+  4      WHERE dept_code = 31
+  5  );
+
+2 rows deleted.
+
+SQL> DELETE FROM emp_mas
+  2  WHERE dept_code = 31;
+
+2 rows deleted.
