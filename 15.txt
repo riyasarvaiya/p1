@@ -1,0 +1,97 @@
+CREATE TABLE Salesman_1 (
+    Sid number (5) PRIMARY KEY,
+    name VARCHAR(10),
+    city VARCHAR(10),
+    commission number(5)
+);
+CREATE TABLE Customer_1 (
+    C_id number(5)  PRIMARY KEY,
+    cname VARCHAR(10),
+    city VARCHAR(10),
+    grade number(5),
+    salesman_id number(5),
+    FOREIGN KEY (salesman_id) REFERENCES Salesman(Sid)
+);
+
+INSERT INTO Salesman_1 VALUES (101, 'Raj', 'Rajkot', 15);
+INSERT INTO Salesman_1 VALUES (102, 'Harsh', 'Surat', 12);
+INSERT INTO Salesman_1 VALUES (103, 'Mihir', 'Ahmedabad', 10);
+INSERT INTO Salesman_1 VALUES (104, 'jay', 'Rajkot', 14);
+INSERT INTO Salesman_1 VALUES (105, 'Yash', 'Vadodara', 11);
+
+INSERT INTO Customer_1 VALUES (1, 'Kunal', 'Rajkot', 200, 101);
+INSERT INTO Customer_1 VALUES (2, 'prem', 'Surat', 150, 102);
+INSERT INTO Customer_1 VALUES (3, 'Meet', 'Ahmedabad', 100, 103);
+INSERT INTO Customer_1 VALUES (4, 'karan', 'Rajkot', 250, 104);
+INSERT INTO Customer_1 VALUES (5, 'Krish', 'Vadodara', 80, 105);
+
+q.1
+SQL> SELECT *
+  2  FROM Customer_1
+  3  WHERE grade = 200;
+
+      C_ID CNAME      CITY            GRADE SALESMAN_ID
+---------- ---------- ---------- ---------- -----------
+         1 Kunal      Rajkot            200         101
+
+q.2
+SQL> SELECT *
+  2  FROM Customer_1
+  3  WHERE grade > 100;
+
+      C_ID CNAME      CITY   GRADE          SALESMAN_ID
+---------- ---------- ---------- ----------            -----------
+         1 Kunal      Rajkot            200         101
+         2 prem       Surat             150         102
+         4 karan      Rajkot            250         104
+q.3
+SELECT *
+FROM Customer_1
+WHERE city = 'Rajkot'
+AND grade > 100;
+
+C_ID 	CNAM	ECITY	GRADE 	SALESMAN_ID
+---------- ---------- ---------- ---------- 	-----------
+         1 	Kunal      Rajkot            200         101
+         4 	karan      Rajkot            250         104
+
+Q.4
+SELECT *
+FROM CUSTOMER_1
+WHERE CITY = 'Rajkot'
+OR GRADE > 100;
+
+C_ID	 CNAME      CITY      GRADE 	SALESMAN_ID
+---------- ---------- 	---------- 	---------- 	-----------
+         1	 Kunal      Rajkot            200         101
+         2	 prem       Surat             150         102
+         4 	karan      Rajkot            250         104
+
+Q.5
+SELECT CNAME, CITY, GRADE
+FROM CUSTOMER_1
+ORDER BY GRADE DESC;
+
+CNAME      CITY              GRADE
+---------- ----------	       ----------
+karan      Rajkot              250
+Kunal      Rajkot              200
+prem       Surat               150
+Meet      Ahmedabad    100
+Krish      Vadodara          80
+
+Q.6
+SELECT C.CNAME, S.NAME
+FROM CUSTOMER_1 C
+JOIN SALESMAN_1 S
+ON C.CITY = S.CITY;
+
+CNAME      NAME
+---------- ----------
+karan      Raj
+Kunal      Raj
+prem       Harsh
+Meet       Mihir
+karan      jay
+Kunal      jay
+Krish      Yash
