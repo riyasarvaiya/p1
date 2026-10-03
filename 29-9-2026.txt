@@ -1,0 +1,43 @@
+19.
+
+SQL> DECLARE
+  2      num NUMBER := 11;
+  3  BEGIN
+  4      IF MOD(num, 2) = 0 THEN
+  5          DBMS_OUTPUT.PUT_LINE(num || ' is an Even number');
+  6      ELSE
+  7          DBMS_OUTPUT.PUT_LINE(num || ' is an Odd number');
+  8      END IF;
+  9  END;
+ 10  /
+
+ 11 is an Odd number
+
+PL/SQL procedure successfully completed.
+
+20.
+
+SQL> DECLARE
+  2  NUM NUMBER;
+  3  BEGIN
+  4  NUM:=&NUM;
+  5  FOR I IN 1..10 LOOP
+  6  DBMS_OUTPUT.PUT_LINE(NUM || '*' || I || '=' || (NUM *I));
+  7  END LOOP;
+  8  END;
+  9  /
+Enter value for num: 2
+old   4: NUM:=&NUM;
+new   4: NUM:=2;
+2*1=2
+2*2=4
+2*3=6
+2*4=8
+2*5=10
+2*6=12
+2*7=14
+2*8=16
+2*9=18
+2*10=20
+
+PL/SQL procedure successfully completed.

@@ -1,0 +1,49 @@
+SQL> CREATE DATABASE LINK riya_link CONNECT TO riya IDENTIFIED BY riya31 USING 'RIYA_DB';
+
+Database link created.
+
+SQL> SELECT *FROM riya.department;
+
+    DEPTNO DNAME                LOC
+---------- -------------------- --------------------
+         2 ACCOUNTING           AHMEDABAD
+         1 CLERK                SURAT
+         3 SALES                VADODARA
+         4 ANALYST              RAJKOT
+		 
+		 SQL> SELECT
+  2      e.emp_id,
+  3      e.emp_name,
+  4      e.salary,
+  5      d.dname,
+  6      d.loc
+  7  FROM employee e
+  8  JOIN riya.department d
+  9      ON e.dept_id = d.deptno;
+
+    EMP_ID EMP_NAME                 SALARY DNAME
+---------- -------------------- ---------- --------------------
+LOC
+--------------------
+         4 kriya                     24000 ACCOUNTING
+AHMEDABAD
+
+         1 RADHIKA                   50000 ACCOUNTING
+AHMEDABAD
+
+         5 RAHUL                     25000 CLERK
+SURAT
+
+
+    EMP_ID EMP_NAME                 SALARY DNAME
+---------- -------------------- ---------- --------------------
+LOC
+--------------------
+         2 KRISHN                    28000 SALES
+VADODARA
+
+         3 GOKUL                     26000 ANALYST
+RAJKOT
+
+
+SQL> commit;

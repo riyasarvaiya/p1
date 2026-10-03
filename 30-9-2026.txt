@@ -1,0 +1,13 @@
+SQL> CREATE INDEX idx_emp_id
+  2  ON employee(emp_id);
+
+Index created.
+
+SQL> select *From employee where emp_id=5;
+
+    EMP_ID EMP_NAME             POST_VARCH MGR_ID     HIRE_DATE     SALARY
+---------- -------------------- ---------- ---------- --------- ----------
+      COMM DEPT_ID
+---------- ----------
+         5 RAHUL                CLERK      2345       15-SEP-26      25000
+         1 1
