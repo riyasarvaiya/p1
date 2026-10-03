@@ -1,0 +1,29 @@
+grant select on employee1 to keval;
+grant select on employee1 to keval
+                             *
+ERROR at line 1:
+ORA-01917: user or role 'KEVAL' does not exist 
+
+
+SQL> revoke select on employee1 from keval;
+revoke select on employee1 from keval
+                                *
+ERROR at line 1:
+ORA-01917: user or role 'KEVAL' does not exist 
+
+
+SQL> GRANT SELECT ON EMPLOYEE1 TO KEVAL;
+GRANT SELECT ON EMPLOYEE1 TO KEVAL
+                             *
+ERROR at line 1:
+ORA-01917: user or role 'KEVAL' does not exist 
+
+
+SQL> GRANT SELECT ON employee1 TO scott;
+GRANT SELECT ON employee1 TO scott
+                             *
+ERROR at line 1:
+ORA-01749: you may not GRANT/REVOKE privileges to/from yourself 
+
+
+SQL> 

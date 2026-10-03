@@ -1,0 +1,147 @@
+cl scr;
+SQL> select *From salary_mast;
+
+    EMP_NO        SAL  DEPT_CODE        HRA         MA         PF               
+---------- ---------- ---------- ---------- ---------- ----------               
+       431       3000         31        200        100         50               
+       331       4000         22        220        110         70               
+
+SQL> select *from emp_mas;
+
+    EMP_NO EMP_NAME    DEPT_CODE DES                                            
+---------- ---------- ---------- ----------                                     
+       431 KRISHN             31 PROGRAMMER                                     
+       331 JAY                22 ACCOUNTANT                                     
+       652 HARI               41 SALESMAN                                       
+       261 PREM               31 PROGRAMMER                                     
+       981 DEV                22 ACCOUNTANT                                     
+
+SQL> select *from dept_mas;
+
+   DEPT_NO DEPT_NAME                                                            
+---------- ----------                                                           
+        31 COMPUTER                                                             
+        22 ACC                                                                  
+        41 SALES                                                                
+
+SQL> insert into salary_mast values(652,5000,41,210,200,100);
+
+1 row created.
+
+SQL> insert into salary_mast values(261,2200,31,110,150,90);
+
+1 row created.
+
+SQL> insert into salary_mast values(981,3500,22,200,100,50);
+
+1 row created.
+
+SQL> select *from salary_mast;
+
+    EMP_NO        SAL  DEPT_CODE        HRA         MA         PF               
+---------- ---------- ---------- ---------- ---------- ----------               
+       652       5000         41        210        200        100               
+       261       2200         31        110        150         90               
+       981       3500         22        200        100         50               
+       431       3000         31        200        100         50               
+       331       4000         22        220        110         70               
+
+SQL> select emp_name,dept_name,sal+hra+ma-pf as totalsal from emp_mas,dept_mas,salary_mast where dept_code=dept_no and emp_mas.emp_no=salary_mast.emp_no and sal>2000 and sal<5000;
+select emp_name,dept_name,sal+hra+ma-pf as totalsal from emp_mas,dept_mas,salary_mast where dept_code=dept_no and emp_mas.emp_no=salary_mast.emp_no and sal>2000 and sal<5000
+                                                                                            *
+ERROR at line 1:
+ORA-00918: column ambiguously defined 
+
+
+SQL> SELECT e.Emp_name, d.Dept_name, s.Sal + s.HRA + s.MA - s.PF AS Total_Salary
+  2  FROM Emp_mast e, Dept_mast d, Salary_mast s
+  3  WHERE e.Dept_code = d.Dept_no
+  4  AND e.Emp_no = s.Emp_no
+  5  AND s.Sal > 2000
+  6  AND s.Sal < 5000;
+FROM Emp_mast e, Dept_mast d, Salary_mast s
+                 *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT e.Emp_name, d.Dept_name, s.Sal + s.HRA + s.MA - s.PF AS Total_Salary
+  2  FROM Emp_mas e, Dept_mas d, Salary_mast s WHERE e.Dept_code = d.Dept_no
+  3  AND e.Emp_no = s.Emp_no
+  4  AND s.Sal > 2000
+  5  AND s.Sal < 5000;
+
+EMP_NAME   DEPT_NAME  TOTAL_SALARY                                              
+---------- ---------- ------------                                              
+PREM       COMPUTER           2370                                              
+DEV        ACC                3750                                              
+KRISHN     COMPUTER           3250                                              
+JAY        ACC                4260                                              
+
+SQL> UPDATE Salary_mast
+  2  SET HRA = CASE
+  3              WHEN Sal > 2000 THEN 100
+  4              ELSE 200
+  5            END;
+
+5 rows updated.
+
+SQL> DELETE FROM Emp_mast
+  2  WHERE Dept_code IN (
+  3      SELECT Dept_no
+  4      FROM Dept_mast
+  5      WHERE Dept_name = 'Computer'
+  6  );
+DELETE FROM Emp_mast
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL>  DELETE FROM Emp_mas WHERE Dept_code IN (SELECT Dept_no FROM Dept_mas WHERE Dept_name = 'PROGRAMMER');
+
+0 rows deleted.
+
+SQL> DELETE FROM Emp_mas WHERE Dept_code IN (SELECT Dept_no FROM Dept_mas WHERE Dept_name ='Computer');
+
+0 rows deleted.
+
+SQL> DELETE FROM emp_mas
+  2  WHERE dept_code = 31;
+DELETE FROM emp_mas
+*
+ERROR at line 1:
+ORA-02292: integrity constraint (SCOTT.SYS_C005251) violated - child record 
+found 
+
+
+SQL> DELETE FROM salary_mas
+  2  WHERE emp_no IN (
+  3      SELECT emp_no
+  4      FROM emp_mas
+  5      WHERE dept_code = 31
+  6  );
+DELETE FROM salary_mas
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> DELETE FROM salary_masT WHERE emp_no IN (
+  2      SELECT emp_no
+  3      FROM emp_mas
+  4      WHERE dept_code = 31
+  5  );
+
+2 rows deleted.
+
+SQL> DELETE FROM emp_mas
+  2  WHERE dept_code = 31;
+
+2 rows deleted.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 

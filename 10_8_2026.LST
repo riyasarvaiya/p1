@@ -1,0 +1,8 @@
+
+SQL> select sum(item_price) as total_price from order_details;
+
+TOTAL_PRICE                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+         75                                                                                                                                                                                             
+
+SQL> 

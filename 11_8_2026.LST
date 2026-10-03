@@ -1,0 +1,147 @@
+cl scr;
+SQL> create table student_master(sno number(2) primary key,sname varchar(10),c_code number(3),city varchar(8),age number(2),froreign key (c_code) references course_master(c_code));
+create table student_master(sno number(2) primary key,sname varchar(10),c_code number(3),city varchar(8),age number(2),froreign key (c_code) references course_master(c_code))
+                                                                                                                                    *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> create table course_master(c_code number(3)primary key,cname varchar (8));
+
+Table created.
+
+SQL>  create table student_master(sno number(2) primary key,sname varchar(10),c_code number(3),city varchar(8),age number(2),froreign key (c_code) references course_master(c_code));
+ create table student_master(sno number(2) primary key,sname varchar(10),c_code number(3),city varchar(8),age number(2),froreign key (c_code) references course_master(c_code))
+                                                                                                                                     *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> CREATE TABLE STUDENT_MASTER(SNO NUMBER(2) PRIMARY KEY,SNAME VARCHAR(10),C_CODE NUMBER(3),CITY VARCHAR(10),AGE NUMBER(2),FOREIGN KEY (C_CODE) REFERENCES COURSE_MASTER(C_CODE));
+
+Table created.
+
+SQL> CREATE TABLE FEE_MASTER(SNO NUMBER(2),FEE NUMBER(5),FOREIGN KEY(SNO) REFERENCES STUDENT_MASTER(SNO));
+
+Table created.
+
+SQL> INSERT INTO STUDENT_MASTER VALUES(01,'KRISH',010,'RAJKOT',24);
+INSERT INTO STUDENT_MASTER VALUES(01,'KRISH',010,'RAJKOT',24)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOTT.SYS_C005242) violated - parent key not 
+found 
+
+
+SQL> INSERT INTO FEE_MASTER VALUES(010,35000);
+INSERT INTO FEE_MASTER VALUES(010,35000)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOTT.SYS_C005243) violated - parent key not 
+found 
+
+
+SQL> INSERT INTO COURSE_MASTER VALUES (010,'MATHS');
+
+1 row created.
+
+SQL> INSERT INTO COURSE_MASTER VALUES(120,'HINDI');
+
+1 row created.
+
+SQL> INSERT INTO COURSE_MASTER VALUES(230,'GUJ');
+
+1 row created.
+
+SQL> INSERT INTO FEE_MASTER VALUES(01,20000);
+INSERT INTO FEE_MASTER VALUES(01,20000)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOTT.SYS_C005243) violated - parent key not 
+found 
+
+
+SQL> INSERT INTO STUDENT_MASTER VALUES(01,'KRISH',010,'RAJKOT',24);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_MASTER VALUES(02,'RAJ',120,'SURAT',23);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_MASTER VALUES(03,'JAY',230,'JAMNAGR',22);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_MASTER VALUES(04,'PREM',010,'RAJKOT',22);
+
+1 row created.
+
+SQL> INSERT INTO STUDENT_MASTER VALUES(05,'AMAN',120,'SURAT',24);
+
+1 row created.
+
+SQL> INSERT INTO FEE_MASTER VALUES(01,20000);
+
+1 row created.
+
+SQL> INSERT INTO FEE_MASTER VALUES(02,25000);
+
+1 row created.
+
+SQL> INSERT INTO FEE_MASTER VALUES(03,23000);
+
+1 row created.
+
+SQL> INSERT INTO FEE_MASTER VALUES(04,45000);
+
+1 row created.
+
+SQL> INSERT INTO FEE_MASTER VALUES(05,30000);
+
+1 row created.
+
+SQL> SELECT S.SNAME FROM STUDENT_MASTER S JOIN FEE_MASTER F ON S.SNO=F.SNO WHERE F.SNO IS NULL;
+
+no rows selected
+
+SQL> SELECT SNAME,CITY FROM STUDENT_MASTER WHERE CITY IN('JAMNAGAR','RAJKOT','SURAT');
+
+SNAME      CITY                                                                 
+---------- ----------                                                           
+KRISH      RAJKOT                                                               
+RAJ        SURAT                                                                
+PREM       RAJKOT                                                               
+AMAN       SURAT                                                                
+
+SQL> SELECT SNAME,CITY FROM STUDENT_MASTER WHERE CITY IN('JAMNAGR','RAJKOT','SURAT');
+
+SNAME      CITY                                                                 
+---------- ----------                                                           
+KRISH      RAJKOT                                                               
+RAJ        SURAT                                                                
+JAY        JAMNAGR                                                              
+PREM       RAJKOT                                                               
+AMAN       SURAT                                                                
+
+SQL> SELECT C.CNAME,S.SNO,S.SNAME FROM COURSE_MASTER C JOIN STUDENT_MASTER S ON C.C_CODE=S.C_CODE ORDER BY C.CNAME;
+
+CNAME           SNO SNAME                                                       
+-------- ---------- ----------                                                  
+GUJ               3 JAY                                                         
+HINDI             2 RAJ                                                         
+HINDI             5 AMAN                                                        
+MATHS             4 PREM                                                        
+MATHS             1 KRISH                                                       
+
+SQL> SELECT S.SNAME,C.CNAME,S.AGE FROM STUDENT_MASTER S JOIN COURSE_MASTER C ON S.C_CODE=C.C_CODE WHERE S.AGE>23 AND S.AGE<27 AND C.CNAME='MATHS';
+
+SNAME      CNAME           AGE                                                  
+---------- -------- ----------                                                  
+KRISH      MATHS            24                                                  
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 

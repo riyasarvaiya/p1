@@ -1,0 +1,152 @@
+CL SCR;
+SQL> SELECT *
+  2  FROM CUSTOMER_1
+  3  WHERE CITY = 'Rajkot'
+  4  AND GRADE > 100;
+
+no rows selected
+
+SQL> SELECT *fROM customer_!;
+SELECT *fROM customer_!
+                      *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select *from CUSTOMER_1;
+
+no rows selected
+
+SQL> SELECT *fROM CUSTOMER_1;
+
+no rows selected
+
+SQL> SELECT *FROM SALESMAN_1;
+
+       SID NAME       CITY       COMMISSION                                     
+---------- ---------- ---------- ----------                                     
+       101 Raj        Rajkot             15                                     
+       102 Harsh      Surat              12                                     
+       103 Mihir      Ahmedabad          10                                     
+       104 jay        Rajkot             14                                     
+       105 Yash       Vadodara           11                                     
+
+SQL> SELECT *
+  2  FROM CUSTOMER_1
+  3  WHERE CITY = 'Rajkot'
+  4  AND GRADE > 100;
+
+no rows selected
+
+SQL> INSERT INTO Customer_1 VALUES (1, 'Kunal', 'Rajkot', 200, 101);
+
+1 row created.
+
+SQL> INSERT INTO Customer_1 VALUES (2, 'prem', 'Surat', 150, 102);
+
+1 row created.
+
+SQL> INSERT INTO Customer_1 VALUES (3, 'Meet', 'Ahmedabad', 100, 103);
+
+1 row created.
+
+SQL> INSERT INTO Customer_1 VALUES (4, 'karan', 'Rajkot', 250, 104);
+
+1 row created.
+
+SQL> INSERT INTO Customer_1 VALUES (5, 'Krish', 'Vadodara', 80, 105);
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT *fROM CUSTOMER_1;
+
+      C_ID CNAME      CITY            GRADE SALESMAN_ID                         
+---------- ---------- ---------- ---------- -----------                         
+         1 Kunal      Rajkot            200         101                         
+         2 prem       Surat             150         102                         
+         3 Meet       Ahmedabad         100         103                         
+         4 karan      Rajkot            250         104                         
+         5 Krish      Vadodara           80         105                         
+
+SQL> autocommit OFF
+autocommit OFF
+linesize 80
+ SELECT *
+  2   FROM CUSTOMER_1
+  3   WHERE CITY = 'Rajkot'
+  4   AND GRADE > 100;
+
+      C_ID CNAME      CITY            GRADE SALESMAN_ID                         
+---------- ---------- ---------- ---------- -----------                         
+         1 Kunal      Rajkot            200         101                         
+         4 karan      Rajkot            250         104                         
+
+SQL> SELECT *
+  2  FROM customers
+  3  WHERE CITY = 'Rajkot'
+  4     OR GRADE > 100;
+FROM customers
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT *
+  2  FROM CUSTOMER_1
+  3  WHERE CITY = 'Rajkot'
+  4  OR GRADE > 100;
+
+      C_ID CNAME      CITY            GRADE SALESMAN_ID                         
+---------- ---------- ---------- ---------- -----------                         
+         1 Kunal      Rajkot            200         101                         
+         2 prem       Surat             150         102                         
+         4 karan      Rajkot            250         104                         
+
+SQL> 
+SQL> SELECT CNAME, CITY, GRADE
+  2  FROM customers
+  3  ORDER BY GRADE DESC;
+FROM customers
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT CNAME, CITY, GRADE
+  2  FROM CUSTOMER_1
+  3  ORDER BY GRADE DESC;
+
+CNAME      CITY            GRADE                                                
+---------- ---------- ----------                                                
+karan      Rajkot            250                                                
+Kunal      Rajkot            200                                                
+prem       Surat             150                                                
+Meet       Ahmedabad         100                                                
+Krish      Vadodara           80                                                
+
+SQL> SELECT C.CNAME, S.NAME
+  2  FROM CUSTOMER_1 C
+  3  JOIN SALESMAN_1 S
+  4  ON C.CITY = S.CITY;
+
+CNAME      NAME                                                                 
+---------- ----------                                                           
+karan      Raj                                                                  
+Kunal      Raj                                                                  
+prem       Harsh                                                                
+Meet       Mihir                                                                
+karan      jay                                                                  
+Kunal      jay                                                                  
+Krish      Yash                                                                 
+
+7 rows selected.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 

@@ -1,0 +1,48 @@
+cl scr;
+SQL> ii. Write a query which will retrieve the value of salesman id of all salesman getting
+SP2-0734: unknown command beginning "ii. Write ..." - rest of line ignored.
+SQL> orders from the customers in orders table without any repeatscl scr;
+SP2-0734: unknown command beginning "orders fro..." - rest of line ignored.
+SQL> cl scr;
+SQL> select distinct sal_id from orders;
+
+    SAL_ID                                                                      
+----------                                                                      
+        72                                                                      
+        74                                                                      
+        75                                                                      
+        71                                                                      
+        73                                                                      
+
+SQL> select ord_no,ord
+  2  s
+  3  
+SQL> select ord_no,ord_date,pur_amt from orders where sal_id=73;
+
+    ORD_NO ORD_DATE     PUR_AMT                                                 
+---------- --------- ----------                                                 
+       231 09-MAR-25        263                                                 
+
+SQL> select *from orders order by ord_no asc;
+
+    ORD_NO    PUR_AMT ORD_DATE      CUS_ID     SAL_ID                           
+---------- ---------- --------- ---------- ----------                           
+       221        200 27-JAN-25      11023         71                           
+       231        263 09-MAR-25      56273         73                           
+       321        300 19-FEB-25      23651         72                           
+       652        763 27-MAR-25      78621         74                           
+       872        182 24-JUL-25      99621         75                           
+
+SQL> commit;
+
+Commit complete.
+
+SQL> create table company_master(com_id number(3) primary key,com_name varchar(10));
+
+Table created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 

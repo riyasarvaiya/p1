@@ -1,0 +1,50 @@
+GRANT ALL PRIVILEGES TO scott;
+
+Grant succeeded.
+
+SQL> create user riya identified by 'riya31' default tablespace users temporary tablespace temp quota unlimited on users;
+create user riya identified by 'riya31' default tablespace users temporary tablespace temp quota unlimited on users
+                               *
+ERROR at line 1:
+ORA-00988: missing or invalid password(s) 
+
+
+SQL>  create user riya identified by riya31 default tablespace users temporary tablespace temp quotaunlimited on users;
+ create user riya identified by riya31 default tablespace users temporary tablespace temp quotaunlimited on users
+                                                                                          *
+ERROR at line 1:
+ORA-00922: missing or invalid option 
+
+
+SQL> create user riya identified by riya31 default tablespace users temporary tablespace temp quota unlimited on users;
+
+User created.
+
+SQL> grant dba to riya;
+
+Grant succeeded.
+
+SQL> SELECT USERNAME, ACCOUNT_STATUS
+  2  FROM DBA_USERS
+  3  WHERE USERNAME = 'riya';
+
+no rows selected
+
+SQL> SELECT GRANTED_ROLE
+  2  FROM DBA_ROLE_PRIVS
+  3  WHERE GRANTEE = 'riya';
+
+no rows selected
+
+SQL> SELECT USERNAME, ACCOUNT_STATUS
+  2  FROM DBA_USERS
+  3  WHERE USERNAME = 'RIYA';
+
+USERNAME                       ACCOUNT_STATUS                                   
+------------------------------ --------------------------------                 
+RIYA                           OPEN                                             
+
+SQL> disconnect;
+Disconnected from Oracle Database 10g Enterprise Edition Release 10.2.0.3.0 - Production
+With the Partitioning, OLAP and Data Mining options
+SQL> 

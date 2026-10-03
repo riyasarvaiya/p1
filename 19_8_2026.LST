@@ -1,0 +1,147 @@
+cl scr;
+SQL> edit
+SP2-0107: Nothing to save.
+SQL> autocommit OFF
+autocommit OFF
+linesize 80
+SELECT O.ORD_ID, C.CNAME
+  2  FROM ORDER1 O
+  3  JOIN CUSTOMER1 C
+  4  ON O.CUST_ID = C.CUST_ID;
+
+    ORD_ID CNAME                                                                
+---------- ----------                                                           
+         4 ALICE                                                                
+         2 CHARLIE                                                              
+         3 EMMA                                                                 
+         5 FRANK                                                                
+         1 GRACE                                                                
+
+SQL> SELECT C.CNAME, C.CITY, S.NAME AS SALESMAN, S.COMMISSION
+  2  FROM CUSTOMER1 C
+  3  JOIN SALESMAN1 S
+  4  ON C.SAL_ID = S.SAL_ID
+  5  WHERE S.COMMISSION BETWEEN 12 AND 14;
+
+CNAME      CITY       SALESMAN   COMMISSION                                     
+---------- ---------- ---------- ----------                                     
+ALICE      NEW YORK   JOHN               12                                     
+BOB        LONDON     SMITH              13                                     
+DAVID      NEW YORK   JAMES              14                                     
+GRACE      AHMEDABAD  JOHN               12                                     
+
+SQL> SELECT O.ORD_ID,
+  2         C.CNAME,
+  3         S.COMMISSION,
+  4         O.PUR_AMT * S.COMMISSION / 100 AS EARNED_COMMISSION
+  5  FROM ORDER1 O
+  6  JOIN CUSTOMER1 C
+  7  ON O.CUST_ID = C.CUST_ID
+  8  JOIN SALESMAN1 S
+  9  ON C.SAL_ID = S.SAL_ID
+ 10  WHERE C.GRADE >= 200;
+
+    ORD_ID CNAME      COMMISSION EARNED_COMMISSION                              
+---------- ---------- ---------- -----------------                              
+         1 GRACE              12                78                              
+         4 ALICE              12               330                              
+         3 EMMA               15             292.5                              
+
+SQL> SELECT O.ORD_ID, C.CNAME, S.COMMISSION,
+  2         O.PUR_AMT * S.COMMISSION / 100 AS EARNED_COMMISSION
+  3  FROM ORDER1 O, CUSTOMER1 C, SALESMAN1 S
+  4  WHERE O.CUST_ID = C.CUST_ID
+  5  AND C.SAL_ID = S.SAL_ID
+  6  AND C.GRADE >= 200;
+
+    ORD_ID CNAME      COMMISSION EARNED_COMMISSION                              
+---------- ---------- ---------- -----------------                              
+         1 GRACE              12                78                              
+         3 EMMA               15             292.5                              
+         4 ALICE              12               330                              
+
+SQL> SELECT O.ORD_ID,
+  2         O.PUR_AMT,
+  3         C.CNAME,
+  4         C.CITY
+  5  FROM ORDER1 O
+  6  JOIN CUSTOMER1 C
+  7  ON O.CUST_ID = C.CUST_ID
+  8  WHERE O.PUR_AMT BETWEEN 500 AND 2000;
+
+    ORD_ID    PUR_AMT CNAME      CITY                                           
+---------- ---------- ---------- ----------                                     
+         2       1450 CHARLIE    MUMBAI                                         
+         3       1950 EMMA       DELHI                                          
+         5        850 FRANK      PARIS                                          
+         1        650 GRACE      AHMEDABAD                                      
+
+SQL> 
+SQL> SELECT C.CNAME AS CUSTOMER,
+  2         S.NAME AS SALESMAN
+  3  FROM CUSTOMER1 C
+  4  JOIN SALESMAN1 S
+  5  ON C.SAL_ID = S.SAL_ID;
+
+CUSTOMER   SALESMAN                                                             
+---------- ----------                                                           
+ALICE      JOHN                                                                 
+BOB        SMITH                                                                
+CHARLIE    DAVID                                                                
+DAVID      JAMES                                                                
+EMMA       ROBERT                                                               
+FRANK      DAVID                                                                
+GRACE      JOHN                                                                 
+
+7 rows selected.
+
+SQL> SELECT C.CNAME, S.NAME AS SALESMAN, S.COMMISSION
+  2  FROM CUSTOMER1 C
+  3  JOIN SALESMAN1 S
+  4  ON C.SAL_ID = S.SAL_ID
+  5  WHERE S.COMMISSION > 12;
+
+CNAME      SALESMAN   COMMISSION                                                
+---------- ---------- ----------                                                
+BOB        SMITH              13                                                
+DAVID      JAMES              14                                                
+EMMA       ROBERT             15                                                
+
+SQL> SELECT E.EMP_ID,
+  2         E.E_FNAME,
+  3         E.E_LNAME,
+  4         E.SALARY,
+  5         D.DEPT_NO,
+  6         D.DNAME
+  7  FROM E_DETAILS E
+  8  JOIN DEPARTMENT_1 D
+  9  ON E.DEPT_NO = D.DEPT_NO;
+
+    EMP_ID E_FNAME    E_LNAME        SALARY    DEPT_NO DNAME                    
+---------- ---------- ---------- ---------- ---------- ----------               
+         1 RAHUL      PATEL           45000        101 HR                       
+         2 PRIYA      SHAH            55000        102 IT                       
+         3 AMIT       MEHTA           40000        102 IT                       
+         4 NEHA       JOSHI           60000        103 SALES                    
+         5 ROHAN      DESAI           50000        102 IT                       
+         6 KIRAN      SHAH            35000        104 FINANCE                  
+         7 POOJA      PATEL           48000        103 SALES                    
+
+7 rows selected.
+
+SQL> SELECT D.DNAME, COUNT(E.EMP_ID) AS EMPLOYEE_COUNT
+  2  FROM DEPARTMENT_1 D
+  3  JOIN E_DETAILS E
+  4  ON D.DEPT_NO = E.DEPT_NO
+  5  GROUP BY D.DNAME
+  6  HAVING COUNT(E.EMP_ID) > 2;
+
+DNAME      EMPLOYEE_COUNT                                                       
+---------- --------------                                                       
+IT                      3                                                       
+
+SQL> commit;
+
+Commit complete.
+
+SQL> 
